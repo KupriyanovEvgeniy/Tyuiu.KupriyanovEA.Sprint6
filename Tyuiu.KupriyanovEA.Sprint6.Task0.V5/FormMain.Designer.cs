@@ -62,6 +62,7 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task0.V5
             this.textBoxTask.Name = "textBoxTask";
             this.textBoxTask.ReadOnly = true;
             this.textBoxTask.TabStop = false;
+
             // 
             // pictureBoxFormula
             // 
