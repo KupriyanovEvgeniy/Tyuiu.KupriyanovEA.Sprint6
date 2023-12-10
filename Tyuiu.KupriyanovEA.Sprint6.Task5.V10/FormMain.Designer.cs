@@ -33,22 +33,23 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panelUslovie = new System.Windows.Forms.Panel();
-            this.panelInputData = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonSpravka = new System.Windows.Forms.Button();
+            this.buttonFIle_KUE = new System.Windows.Forms.Button();
+            this.buttonStartCode_KUE = new System.Windows.Forms.Button();
             this.groupBoxUslovie = new System.Windows.Forms.GroupBox();
             this.textBoxUslovie = new System.Windows.Forms.TextBox();
-            this.buttonStartCode_KUE = new System.Windows.Forms.Button();
-            this.buttonFIle_KUE = new System.Windows.Forms.Button();
-            this.buttonSpravka = new System.Windows.Forms.Button();
+            this.panelInputData = new System.Windows.Forms.Panel();
             this.groupBoxOutputData = new System.Windows.Forms.GroupBox();
             this.dataGridViewOutputData = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.chart_Kue = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panelUslovie.SuspendLayout();
-            this.panelInputData.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.groupBoxUslovie.SuspendLayout();
+            this.panelInputData.SuspendLayout();
             this.groupBoxOutputData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutputData)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart_Kue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,25 +66,45 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
             this.panelUslovie.Size = new System.Drawing.Size(894, 100);
             this.panelUslovie.TabIndex = 0;
             // 
-            // panelInputData
+            // buttonSpravka
             // 
-            this.panelInputData.BackColor = System.Drawing.Color.Silver;
-            this.panelInputData.Controls.Add(this.groupBoxOutputData);
-            this.panelInputData.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelInputData.Location = new System.Drawing.Point(0, 100);
-            this.panelInputData.Name = "panelInputData";
-            this.panelInputData.Size = new System.Drawing.Size(200, 361);
-            this.panelInputData.TabIndex = 1;
+            this.buttonSpravka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSpravka.BackColor = System.Drawing.Color.DodgerBlue;
+            this.buttonSpravka.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSpravka.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSpravka.Location = new System.Drawing.Point(756, 25);
+            this.buttonSpravka.Name = "buttonSpravka";
+            this.buttonSpravka.Size = new System.Drawing.Size(132, 63);
+            this.buttonSpravka.TabIndex = 9;
+            this.buttonSpravka.Text = "Справка";
+            this.buttonSpravka.UseVisualStyleBackColor = false;
+            this.buttonSpravka.Click += new System.EventHandler(this.buttonSpravka_Click);
             // 
-            // panel1
+            // buttonFIle_KUE
             // 
-            this.panel1.BackColor = System.Drawing.Color.Gray;
-            this.panel1.Controls.Add(this.chart_Kue);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(200, 100);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(694, 361);
-            this.panel1.TabIndex = 2;
+            this.buttonFIle_KUE.BackColor = System.Drawing.Color.Blue;
+            this.buttonFIle_KUE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonFIle_KUE.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonFIle_KUE.Location = new System.Drawing.Point(618, 25);
+            this.buttonFIle_KUE.Name = "buttonFIle_KUE";
+            this.buttonFIle_KUE.Size = new System.Drawing.Size(132, 63);
+            this.buttonFIle_KUE.TabIndex = 8;
+            this.buttonFIle_KUE.Text = "Файл";
+            this.buttonFIle_KUE.UseVisualStyleBackColor = false;
+            this.buttonFIle_KUE.Click += new System.EventHandler(this.buttonFIle_KUE_Click);
+            // 
+            // buttonStartCode_KUE
+            // 
+            this.buttonStartCode_KUE.BackColor = System.Drawing.Color.Green;
+            this.buttonStartCode_KUE.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonStartCode_KUE.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonStartCode_KUE.Location = new System.Drawing.Point(480, 25);
+            this.buttonStartCode_KUE.Name = "buttonStartCode_KUE";
+            this.buttonStartCode_KUE.Size = new System.Drawing.Size(132, 63);
+            this.buttonStartCode_KUE.TabIndex = 7;
+            this.buttonStartCode_KUE.Text = "Выполнить";
+            this.buttonStartCode_KUE.UseVisualStyleBackColor = false;
+            this.buttonStartCode_KUE.Click += new System.EventHandler(this.buttonStartCode_KUE_Click);
             // 
             // groupBoxUslovie
             // 
@@ -110,45 +131,15 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
     "ок из чисел. Вывести все числа, не равные 0. Построить диаграмму по этим значени" +
     "ям.";
             // 
-            // buttonStartCode_KUE
+            // panelInputData
             // 
-            this.buttonStartCode_KUE.BackColor = System.Drawing.Color.Green;
-            this.buttonStartCode_KUE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonStartCode_KUE.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStartCode_KUE.Location = new System.Drawing.Point(480, 25);
-            this.buttonStartCode_KUE.Name = "buttonStartCode_KUE";
-            this.buttonStartCode_KUE.Size = new System.Drawing.Size(132, 63);
-            this.buttonStartCode_KUE.TabIndex = 7;
-            this.buttonStartCode_KUE.Text = "Выполнить";
-            this.buttonStartCode_KUE.UseVisualStyleBackColor = false;
-            this.buttonStartCode_KUE.Click += new System.EventHandler(this.buttonStartCode_KUE_Click);
-            // 
-            // buttonFIle_KUE
-            // 
-            this.buttonFIle_KUE.BackColor = System.Drawing.Color.Blue;
-            this.buttonFIle_KUE.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonFIle_KUE.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonFIle_KUE.Location = new System.Drawing.Point(618, 25);
-            this.buttonFIle_KUE.Name = "buttonFIle_KUE";
-            this.buttonFIle_KUE.Size = new System.Drawing.Size(132, 63);
-            this.buttonFIle_KUE.TabIndex = 8;
-            this.buttonFIle_KUE.Text = "Файл";
-            this.buttonFIle_KUE.UseVisualStyleBackColor = false;
-            this.buttonFIle_KUE.Click += new System.EventHandler(this.buttonFIle_KUE_Click);
-            // 
-            // buttonSpravka
-            // 
-            this.buttonSpravka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSpravka.BackColor = System.Drawing.Color.DodgerBlue;
-            this.buttonSpravka.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSpravka.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSpravka.Location = new System.Drawing.Point(756, 25);
-            this.buttonSpravka.Name = "buttonSpravka";
-            this.buttonSpravka.Size = new System.Drawing.Size(132, 63);
-            this.buttonSpravka.TabIndex = 9;
-            this.buttonSpravka.Text = "Справка";
-            this.buttonSpravka.UseVisualStyleBackColor = false;
-            this.buttonSpravka.Click += new System.EventHandler(this.buttonSpravka_Click);
+            this.panelInputData.BackColor = System.Drawing.Color.Silver;
+            this.panelInputData.Controls.Add(this.groupBoxOutputData);
+            this.panelInputData.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelInputData.Location = new System.Drawing.Point(0, 100);
+            this.panelInputData.Name = "panelInputData";
+            this.panelInputData.Size = new System.Drawing.Size(200, 361);
+            this.panelInputData.TabIndex = 1;
             // 
             // groupBoxOutputData
             // 
@@ -173,6 +164,16 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
             this.dataGridViewOutputData.RowHeadersVisible = false;
             this.dataGridViewOutputData.Size = new System.Drawing.Size(184, 342);
             this.dataGridViewOutputData.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Controls.Add(this.chart_Kue);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(200, 100);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(694, 361);
+            this.panel1.TabIndex = 2;
             // 
             // chart_Kue
             // 
@@ -206,12 +207,12 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Спринт 6 | Таск 5 | Вариант 10 | Куприянов Е.А. ";
             this.panelUslovie.ResumeLayout(false);
-            this.panelInputData.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.groupBoxUslovie.ResumeLayout(false);
             this.groupBoxUslovie.PerformLayout();
+            this.panelInputData.ResumeLayout(false);
             this.groupBoxOutputData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutputData)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart_Kue)).EndInit();
             this.ResumeLayout(false);
 
@@ -230,6 +231,7 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task5.V10
         private System.Windows.Forms.GroupBox groupBoxOutputData;
         private System.Windows.Forms.DataGridView dataGridViewOutputData;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_Kue;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
