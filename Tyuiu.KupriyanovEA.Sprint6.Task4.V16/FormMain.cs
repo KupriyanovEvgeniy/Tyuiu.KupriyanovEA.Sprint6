@@ -70,10 +70,11 @@ namespace Tyuiu.KupriyanovEA.Sprint6.Task4.V16
 
                 DialogResult dialogResult = MessageBox.Show("Файл " + path + "сохранён успешно!\nОткрыть его в блокноте?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
-                if (DialogResult == DialogResult.Yes)
+                if (dialogResult == DialogResult.Yes)
                 {
+                    //System.Diagnostics.Process.Start( path );
                     System.Diagnostics.Process txt = new System.Diagnostics.Process();
-                    txt.StartInfo.FileName = "notepad.exe";
+                    txt.StartInfo.FileName = "Notepad.exe";
                     txt.StartInfo.Arguments = path;
                     txt.Start();
                 }
